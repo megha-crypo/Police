@@ -1,0 +1,221 @@
+{
+  "intents": [
+    {
+      "intent": "look",
+      "examples": [
+        {
+          "text": "Police Station"
+        },
+        {
+          "text": "looking for police station"
+        },
+        {
+          "text": "Near by Police Station"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Sector-8",
+      "examples": [
+        {
+          "text": "Sector-8"
+        },
+        {
+          "text": "Sector 8"
+        },
+        {
+          "text": "Near by Sector-8"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Sector-6",
+      "examples": [
+        {
+          "text": "Sector-6"
+        },
+        {
+          "text": "Near by Sector-6"
+        },
+        {
+          "text": "Sector 6"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Sector-7",
+      "examples": [
+        {
+          "text": "Sector-7"
+        },
+        {
+          "text": "near by sector-7"
+        },
+        {
+          "text": "sector 7"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "Types",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Men",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Women",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Category",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Name of the Police Station: Chawani Thana\nContact No 0788-2283251\n"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1590225846997",
+      "conditions": "@Types:Men",
+      "dialog_node": "node_1_1590225911152"
+    },
+    {
+      "type": "standard",
+      "title": "I am Looking for Police Station",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "In which Sector you are looking? (Sector-1 to Sector-9)"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "conditions": "#look",
+      "dialog_node": "node_9_1590223007925"
+    },
+    {
+      "type": "standard",
+      "title": "Sector-6",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Category - (Men/Women)"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1590223007925",
+      "conditions": "#Sector-6",
+      "dialog_node": "node_4_1590225846997"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "Welcome",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "Police Emergency",
+  "language": "en",
+  "description": "Help Line Numbers"
+}
